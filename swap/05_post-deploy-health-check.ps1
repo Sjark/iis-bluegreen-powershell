@@ -31,13 +31,13 @@ $servers | ForEach-Object {
     }
 
     # Log for debugging purposes
-    Write-Host "======================================"
-    Write-Host "$nodeName ($role)"
-    Write-Host "--------------------------------------"
-    Write-Host "Is available`t`t`t:`t $isAvailable"
-    Write-Host "Is healthy`t`t`t:`t $isHealthy"
-    Write-Host "Is online`t`t`t:`t $isEnabled"
-    Write-Host "Requests per second`t`t:`t $requests"
+    Write-Output "======================================"
+    Write-Output "$nodeName ($role)"
+    Write-Output "--------------------------------------"
+    Write-Output "Is available`t`t`t:`t $isAvailable"
+    Write-Output "Is healthy`t`t`t:`t $isHealthy"
+    Write-Output "Is online`t`t`t:`t $isEnabled"
+    Write-Output "Requests per second`t`t:`t $requests"
 
 
     $isError = 0
@@ -64,17 +64,17 @@ $servers | ForEach-Object {
             $isError = 1
         }
     }
-    Write-Host ""
+    Write-Output ""
     # If error, fail the script to notify the release tool that something is wrong
     if ($isError -eq 1) {
         Write-Error "!!Node is NOT in the expected state"
         exit 1
     }
     else {
-        Write-Host "Node is in the expected state"
+        Write-Output "Node is in the expected state"
     }
 
 
 }
-Write-Host "======================================"
+Write-Output "======================================"
 

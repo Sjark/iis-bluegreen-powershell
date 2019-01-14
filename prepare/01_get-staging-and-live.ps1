@@ -4,14 +4,14 @@ param (
     [String]$greenPath = $(throw '-greenPath is required')
 )
 
-Write-Host "Detecting live vs staging:"
+Write-Output "Detecting live vs staging:"
 
 $result = @{}
 
 if (Get-ServerOnline $serverFarmName "$serverFarmName-blue") {
-    Write-Host "`tLive is Blue"
-    Write-Host "`tStaging is Green"
-    Write-Host "------------------"
+    Write-Output "`tLive is Blue"
+    Write-Output "`tStaging is Green"
+    Write-Output "------------------"
 
     $result["LiveBlueGreen"] = "Blue"
     $result["LiveDeployPath"] = $bluePath
@@ -22,9 +22,9 @@ if (Get-ServerOnline $serverFarmName "$serverFarmName-blue") {
     $result["StagingServer"] = "$serverFarmName-green"
 }
 else {
-    Write-Host "`tLive is Green"
-    Write-Host "`tStaging is Blue"
-    Write-Host "------------------"
+    Write-Output "`tLive is Green"
+    Write-Output "`tStaging is Blue"
+    Write-Output "------------------"
 
     $result["LiveBlueGreen"] = "Green"
     $result["LiveDeployPath"] = $greenPath

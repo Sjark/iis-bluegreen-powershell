@@ -8,4 +8,4 @@ Set-InstanceState $serverFarmName $stagingInstance 0
 # Bring it online
 Set-ServerOnline $serverFarmName $stagingInstance
 
-Write-Host "Staging brought up"
+Write-Output "Staging brought up"

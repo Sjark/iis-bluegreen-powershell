@@ -19,7 +19,7 @@ else {
 
 # The path we'll use to warm the instance up
 $stagingSite = "http://${serverFarmName}:${port}/${warmUpPath}"
-Write-Host "Warming $instanceToWarm up on $stagingSite"
+Write-Output "Warming $instanceToWarm up on $stagingSite"
 
 # Loop until we have a satisfactory response time
 Do {
@@ -28,9 +28,9 @@ Do {
     }
     $ms = $time.TotalMilliSeconds
     If ($ms -ge $minTime) {
-        Write-Host "$($res.StatusCode) from $stagingSite in $($ms)ms"
+        Write-Output "$($res.StatusCode) from $stagingSite in $($ms)ms"
     }
 } While ($ms -ge $minTime)
-Write-Host "$($res.StatusCode) from $stagingSite in $($ms)ms"
+Write-Output "$($res.StatusCode) from $stagingSite in $($ms)ms"
 
 

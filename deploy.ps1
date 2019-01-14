@@ -7,7 +7,7 @@ param (
     [String]$greenPath = $(throw '-greenPath is required'),
     [String]$bluePort = $(throw '-bluePort is required'),
     [String]$greenPort = $(throw '-greenPort is required'),
-    [String]$warmUpPath = $(throw '-warmUpPath is required'),
+    [String]$warmUpPath = $(throw '-warmUpPath is required')
 )
 
 Import-Module -Force "$PSScriptRoot\lib\server-farm.psm1"

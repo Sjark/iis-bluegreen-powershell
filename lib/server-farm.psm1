@@ -46,10 +46,10 @@ function Set-InstanceState($serverFarmName,$instanceName,$state){
 	$methodInstance.Execute()
 
 	$stateName = Get-StateName $state
-	Write-Host "Set state of instance $instanceName on farm $serverFarmName to $stateName"
+	Write-Output "Set state of instance $instanceName on farm $serverFarmName to $stateName"
 }
 
-# Get the index of the Server Farm in the configuration object, 
+# Get the index of the Server Farm in the configuration object,
 # used where we have an array of server farms and need to reference ours specifically
 function Get-ServerFarmIndex($serverFarmName) {
 	$farmIndex = -1
@@ -67,7 +67,7 @@ function Get-ServerFarmIndex($serverFarmName) {
 	return $farmIndex;
 }
 
-# Get the index of the Server Instance in the configuration object, 
+# Get the index of the Server Instance in the configuration object,
 # used where we have an array of server instances and need to reference ours specifically
 function Get-InstanceIndex($FarmIndex, $instanceName) {
 	$instanceIndex = -1
@@ -98,7 +98,7 @@ function Set-ServerOffline($serverFarmName,$instanceName) {
 	$farmIndex = Get-ServerFarmIndex $serverFarmName
 	$instanceIndex = Get-InstanceIndex $farmIndex $instanceName
 
-	Write-Host "Taking instance $instanceName on farm $serverFarmName OFFLINE"
+	Write-Output "Taking instance $instanceName on farm $serverFarmName OFFLINE"
 	Set-WebConfigurationProperty webFarms -Name Collection[$farmIndex].Collection[$instanceIndex].enabled -Value "False"
 }
 
@@ -107,7 +107,7 @@ function Set-ServerOnline($serverFarmName,$instanceName) {
 	$farmIndex = Get-ServerFarmIndex $serverFarmName
 	$instanceIndex = Get-InstanceIndex $farmIndex $instanceName
 
-	Write-Host "Bringing instance $instanceName on farm $serverFarmName ONLINE"
+	Write-Output "Bringing instance $instanceName on farm $serverFarmName ONLINE"
 	Set-WebConfigurationProperty webFarms -Name Collection[$farmIndex].Collection[$instanceIndex].enabled -Value "True"
 }
 

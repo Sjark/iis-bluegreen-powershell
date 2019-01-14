@@ -1,5 +1,5 @@
 function Import-ModuleRemotely([string] $ModuleName, [System.Management.Automation.Runspaces.PSSession] $Session) {
-    Write-Host "Copying module $moduleName to the remote machine so it can be loaded remotely"
+    Write-Output "Copying module $moduleName to the remote machine so it can be loaded remotely"
     function remote( [scriptblock] $Script ) { Invoke-Command -Session $Session -ScriptBlock $Script }
 
     # Check that the module exists locally
@@ -25,11 +25,11 @@ function Import-ModuleRemotely([string] $ModuleName, [System.Management.Automati
 }
 
 function Invoke-ScriptRemotely([string] $localScriptFile, [System.Management.Automation.Runspaces.PSSession] $Session, $argumentList) {
-    Write-Host "======================================================================================================="
-    Write-Host "                         Running $localScriptFile on remote machine"
-    Write-Host "-------------------------------------------------------------------------------------------------------"
+    Write-Output "======================================================================================================="
+    Write-Output "                         Running $localScriptFile on remote machine"
+    Write-Output "-------------------------------------------------------------------------------------------------------"
     $result = Invoke-Command -Session $session -FilePath $localScriptFile -ArgumentList $argumentList
-    Write-Host "======================================================================================================="
+    Write-Output "======================================================================================================="
     return $result
 }
 
